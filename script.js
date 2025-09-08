@@ -8,9 +8,8 @@ const sampleProjects = [
         category: "desktop",
         github: "https://github.com/Akhinoor14/SOLIDWORKS-Projects",
         demo: null,
-        image: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&h=300&fit=crop&crop=center",
+        image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&h=400&fit=crop",
         gallery: [
-            "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&h=400&fit=crop",
             "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800&h=400&fit=crop",
             "https://images.unsplash.com/photo-1562813733-b31f71025d54?w=800&h=400&fit=crop"
         ],
@@ -25,11 +24,11 @@ const sampleProjects = [
         category: "web",
         github: "https://github.com/Akhinoor14/Tinkercad-basic-Projects-Using-Arduino-Uno",
         demo: "https://www.tinkercad.com/users/akhinoor14",
-        image: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=600&h=300&fit=crop&crop=center",
+        image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&h=400&fit=crop",
         gallery: [
-            "https://images.unsplash.com/photo-1553406830-ef2513450d76?w=800&h=400&fit=crop",
-            "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=800&h=400&fit=crop",
-            "https://images.unsplash.com/photo-1581092787765-e4650567ab83?w=800&h=400&fit=crop"
+            "https://images.unsplash.com/photo-1518309435079-11f4ccfec336?w=800&h=400&fit=crop",
+            "https://images.unsplash.com/photo-1434494878577-86c23bcb06b9?w=800&h=400&fit=crop",
+            
         ],
         features: ["40+ Projects", "Circuit diagrams", "Commented code", "IoT applications"],
         featured: false
@@ -136,9 +135,21 @@ window.addEventListener('scroll', () => {
 function createProjectCard(project) {
     const card = document.createElement('div');
     card.className = `project-card ${project.category} ${project.featured ? 'featured' : ''}`;
+    
+    // Create fallback image based on project type
+    const fallbackImage = project.category === 'web' && project.title.includes('Arduino') 
+        ? 'https://via.placeholder.com/600x300/FF6B35/ffffff?text=Arduino+Projects'
+        : project.category === 'desktop' && project.title.includes('SOLIDWORKS')
+        ? 'https://via.placeholder.com/600x300/4F46E5/ffffff?text=SOLIDWORKS+Projects'
+        : 'https://via.placeholder.com/600x300/10B981/ffffff?text=Electronics+Guide';
+    
     card.innerHTML = `
         <div class="project-image">
-            <img src="${project.image}" alt="${project.title}" style="width: 100%; height: 250px; object-fit: cover; border-radius: 8px;" loading="lazy">
+            <img src="${project.image}" 
+                 alt="${project.title}" 
+                 style="width: 100%; height: 250px; object-fit: cover; border-radius: 8px;" 
+                 loading="lazy"
+                 onerror="this.onerror=null; this.src='${fallbackImage}'; console.log('Image failed for ${project.title}, using fallback');">
             <div class="project-overlay">
                 <div class="project-status">
                     ${project.featured ? '<span class="featured-badge">★ Featured</span>' : ''}
