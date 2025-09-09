@@ -1,6 +1,23 @@
 // Enhanced projects data with engineering focus
 const sampleProjects = [
     {
+        title: "Interactive Engineering Portfolio Website",
+        shortDescription: "Modern, responsive portfolio website showcasing engineering projects with dark/light theme, animations, and interactive features.",
+        fullDescription: "A comprehensive, interactive portfolio website built from scratch to showcase engineering projects and technical skills. This modern web application features a responsive design with dark/light theme toggle, smooth animations, particle background effects, and interactive project modals. The website includes advanced functionality such as project filtering, search capabilities, contact forms, and GitHub API integration. Built with vanilla HTML, CSS, and JavaScript, it demonstrates proficiency in modern web development while maintaining focus on engineering content. The site features three main project categories: CAD design (SOLIDWORKS), embedded systems (Arduino), and electronics components. Includes comprehensive documentation, deployment guides, and fallback systems for reliable performance.",
+        tech: ["HTML5", "CSS3", "JavaScript", "Responsive Design", "GitHub Pages", "Web Development"],
+        category: "web",
+        github: "https://github.com/Akhinoor14/Solidworks-Website-Project",
+        demo: "https://akhinoor14.github.io/Solidworks-Website-Project",
+        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=300&fit=crop&crop=center",
+        gallery: [
+            "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop",
+            "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&h=400&fit=crop",
+            "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=400&fit=crop"
+        ],
+        features: ["Dark/Light Theme", "Interactive Animations", "Project Modals", "Responsive Design", "GitHub Integration", "Contact Form"],
+        featured: true
+    },
+    {
         title: "SOLIDWORKS Beginner Projects",
         shortDescription: "20+ SOLIDWORKS projects for beginners with step-by-step tutorials covering mechanical parts, assemblies, and technical drawings.",
         fullDescription: "A comprehensive collection of over 20 SOLIDWORKS projects specifically designed for beginners entering the world of CAD design. This repository serves as a complete learning resource featuring mechanical parts design, complex assemblies, and professional technical drawings. Each project includes detailed step-by-step tutorials with screenshots, downloadable SOLIDWORKS files, and real-world engineering applications. Perfect for students, engineers, and hobbyists looking to master 3D modeling techniques used in modern engineering design. Projects range from simple bracket designs to complex mechanical assemblies, providing a progressive learning path that builds skills systematically.",
@@ -28,7 +45,7 @@ const sampleProjects = [
         gallery: [
             "https://images.unsplash.com/photo-1518309435079-11f4ccfec336?w=800&h=400&fit=crop",
             "https://images.unsplash.com/photo-1434494878577-86c23bcb06b9?w=800&h=400&fit=crop",
-            
+            "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&h=400&fit=crop"
         ],
         features: ["40+ Projects", "Circuit diagrams", "Commented code", "IoT applications"],
         featured: false
@@ -141,7 +158,11 @@ function createProjectCard(project) {
         ? 'https://via.placeholder.com/600x300/FF6B35/ffffff?text=Arduino+Projects'
         : project.category === 'desktop' && project.title.includes('SOLIDWORKS')
         ? 'https://via.placeholder.com/600x300/4F46E5/ffffff?text=SOLIDWORKS+Projects'
-        : 'https://via.placeholder.com/600x300/10B981/ffffff?text=Electronics+Guide';
+        : project.category === 'web' && project.title.includes('Electronic')
+        ? 'https://via.placeholder.com/600x300/10B981/ffffff?text=Electronic+Components'
+        : project.category === 'web' && project.title.includes('Portfolio')
+        ? 'https://via.placeholder.com/600x300/7C3AED/ffffff?text=Portfolio+Website'
+        : 'https://via.placeholder.com/600x300/6366F1/ffffff?text=Engineering+Project';
     
     card.innerHTML = `
         <div class="project-image">
